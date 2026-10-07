@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy · NoteFede</title>
+  <link rel="icon" href="icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap"><a class="brand" href="./"><img src="icon.png" alt="">NoteFede</a></div>
+  </header>
+
+  <main class="wrap">
+    <article class="doc">
+      <h1>Informativa sulla privacy</h1>
+      <p class="muted">Ultimo aggiornamento: 7 ottobre 2026</p>
+
+      <p>NoteFede è un'applicazione per Windows che si installa sul tuo computer. Questa pagina spiega quali dati usa e dove finiscono. In breve: <strong>le tue note restano sul tuo computer</strong> e NoteFede non ha server che le raccolgano.</p>
+
+      <h2>1. Le tue note e i tuoi file</h2>
+      <p>Note, attività, promemoria, allegati e impostazioni sono salvati solo sul tuo computer, nella cartella <code>%APPDATA%\NoteFede</code>. Non vengono inviati allo sviluppatore né a terzi, salvo che sia tu a usare una delle funzioni facoltative descritte sotto.</p>
+
+      <h2>2. Accesso con Google o Discord</h2>
+      <p>Per usare NoteFede accedi con un account Google o Discord. L'accesso avviene nel tuo browser, sulle pagine ufficiali di Google o Discord: NoteFede non vede mai la tua password.</p>
+      <ul>
+        <li><strong>Google</strong>: NoteFede chiede solo i permessi di base <code>openid</code>, <code>email</code> e <code>profile</code>, cioè l'identificativo del tuo account, l'indirizzo email, il nome e la foto del profilo.</li>
+        <li><strong>Discord</strong>: NoteFede chiede solo il permesso <code>identify</code>, cioè l'identificativo, il nome utente e l'immagine del profilo. Non legge email, messaggi né server.</li>
+      </ul>
+      <p>Questi dati servono solo a riconoscerti, a tenere separate le note di account diversi sullo stesso computer e a mostrarti nome e foto nell'app. Sono salvati solo sul tuo computer (file <code>accounts.json</code>). NoteFede non conserva i token di accesso di Google o Discord: li usa una volta per leggere il profilo e poi li scarta.</p>
+      <p>L'uso delle informazioni ricevute dalle API di Google rispetta le <a href="https://developers.google.com/terms/api-services-user-data-policy">Norme sui dati utente dei servizi API di Google</a>, inclusi i requisiti di uso limitato (Limited Use). I dati di Google non vengono venduti, trasferiti a terzi, usati per pubblicità o per addestrare modelli di intelligenza artificiale.</p>
+
+      <h2>3. Funzioni facoltative che inviano dati</h2>
+      <ul>
+        <li><strong>Discord (webhook)</strong>: se colleghi un canale Discord, NoteFede invia in quel canale i promemoria e le note che scegli di inviare. Quei messaggi sono trattati da Discord secondo la sua <a href="https://discord.com/privacy">informativa sulla privacy</a>.</li>
+        <li><strong>Assistente AI</strong> (disattivato di default): se lo attivi con Claude di Anthropic, il testo delle note che scegli di usare viene inviato ad Anthropic con la tua chiave API, secondo la <a href="https://www.anthropic.com/legal/privacy">loro informativa</a>. Con Ollama tutto resta sul tuo computer.</li>
+        <li><strong>Sincronizzazione</strong> (disattivata di default): se la attivi, le modifiche vengono scritte <strong>cifrate</strong> in una cartella scelta da te (es. OneDrive). Senza la tua passphrase non si possono leggere.</li>
+      </ul>
+
+      <h2>4. Nessun tracciamento</h2>
+      <p>NoteFede non contiene pubblicità, statistiche d'uso, analytics o strumenti di tracciamento.</p>
+
+      <h2>5. Cancellare i dati</h2>
+      <ul>
+        <li>Per cancellare tutto: disinstalla NoteFede ed elimina la cartella <code>%APPDATA%\NoteFede</code>.</li>
+        <li>Per togliere a NoteFede l'accesso al tuo account: <a href="https://myaccount.google.com/connections">Google → App e servizi collegati</a> oppure Discord → Impostazioni utente → App autorizzate.</li>
+      </ul>
+
+      <h2>6. Minori</h2>
+      <p>NoteFede non è rivolto a minori di 14 anni e richiede un account Google o Discord, che hanno i propri limiti di età.</p>
+
+      <h2>7. Modifiche e contatti</h2>
+      <p>Se questa informativa cambia, la nuova versione sarà pubblicata su questa pagina con la data aggiornata. Per domande o richieste scrivi nella pagina <a href="https://github.com/geniofabry-cell/NoteFede-download/issues">Contatti e segnalazioni</a>.</p>
+    </article>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 NoteFede</span>
+      <a href="./">Home</a>
+      <a href="termini.html">Termini di servizio</a>
+    </div>
+  </footer>
+</body>
+</html>
