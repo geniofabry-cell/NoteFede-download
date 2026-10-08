@@ -15,12 +15,12 @@
   <main class="wrap">
     <article class="doc">
       <h1>Informativa sulla privacy</h1>
-      <p class="muted">Ultimo aggiornamento: 7 ottobre 2026</p>
+      <p class="muted">Ultimo aggiornamento: 8 ottobre 2026</p>
 
       <p>NoteFede è un'applicazione per Windows che si installa sul tuo computer. Questa pagina spiega quali dati usa e dove finiscono. In breve: <strong>le tue note restano sul tuo computer</strong> e NoteFede non ha server che le raccolgano.</p>
 
       <h2>1. Le tue note e i tuoi file</h2>
-      <p>Note, attività, promemoria, allegati e impostazioni sono salvati solo sul tuo computer, nella cartella <code>%APPDATA%\NoteFede</code>. Non vengono inviati allo sviluppatore né a terzi, salvo che sia tu a usare una delle funzioni facoltative descritte sotto.</p>
+      <p>Note, attività, promemoria, allegati e impostazioni sono salvati solo sul tuo computer, nella cartella <code>%APPDATA%\NoteFede</code>. Non vengono mai inviati allo sviluppatore. Arrivano a servizi di terzi solo se sei tu a usare una delle funzioni facoltative descritte sotto (per esempio il backup su Google Drive).</p>
 
       <h2>2. Accesso con Google o Discord</h2>
       <p>Per usare NoteFede accedi con un account Google o Discord. L'accesso avviene nel tuo browser, sulle pagine ufficiali di Google o Discord: NoteFede non vede mai la tua password.</p>
@@ -31,26 +31,36 @@
       <p>Questi dati servono solo a riconoscerti, a tenere separate le note di account diversi sullo stesso computer e a mostrarti nome e foto nell'app. Sono salvati solo sul tuo computer (file <code>accounts.json</code>). NoteFede non conserva i token di accesso di Google o Discord: li usa una volta per leggere il profilo e poi li scarta.</p>
       <p>L'uso delle informazioni ricevute dalle API di Google rispetta le <a href="https://developers.google.com/terms/api-services-user-data-policy">Norme sui dati utente dei servizi API di Google</a>, inclusi i requisiti di uso limitato (Limited Use). I dati di Google non vengono venduti, trasferiti a terzi, usati per pubblicità o per addestrare modelli di intelligenza artificiale.</p>
 
-      <h2>3. Funzioni facoltative che inviano dati</h2>
+      <h2>3. Google Calendar e Google Drive (facoltativi)</h2>
+      <p>Se scegli "Collega Google" nelle Impostazioni, NoteFede chiede questi permessi in più, e solo per queste funzioni:</p>
+      <ul>
+        <li><strong>Vedere i tuoi calendari</strong> (<code>calendar.readonly</code>): per mostrare i tuoi impegni nella dashboard e nel calendario delle attività e per creare, quando lo chiedi tu, la nota di una riunione con titolo, orario, luogo, partecipanti e descrizione dell'evento. Gli eventi vengono letti da Google ogni volta che servono e tenuti solo in memoria; finiscono in una nota solo se la crei tu.</li>
+        <li><strong>Gestire il calendario creato da NoteFede</strong> (<code>calendar.app.created</code>): se attivi l'opzione, NoteFede crea un calendario chiamato "NoteFede" e vi copia le tue attività con scadenza (titolo, descrizione, priorità, data, ora, promemoria). Non modifica né elimina gli eventi degli altri tuoi calendari.</li>
+        <li><strong>Vedere e gestire solo i file creati da NoteFede su Drive</strong> (<code>drive.file</code>): per salvare i backup delle tue note (database e allegati) nella cartella "NoteFede" del tuo Drive, per ripristinarli e per creare un documento Google Docs da una nota quando lo chiedi. NoteFede non vede gli altri file del tuo Drive.</li>
+      </ul>
+      <p>Questi dati passano direttamente dal tuo computer ai server di Google: non transitano da server di NoteFede, che non esistono. L'autorizzazione è salvata solo sul tuo computer, cifrata con il tuo account di Windows. Puoi scollegare Google in qualsiasi momento dalle Impostazioni: NoteFede revoca l'autorizzazione; ciò che hai già salvato su Google (backup, eventi, documenti) resta nel tuo account finché non lo elimini tu.</p>
+      <p>L'uso e il trasferimento ad altre app delle informazioni ricevute dalle API di Google rispettano le <a href="https://developers.google.com/terms/api-services-user-data-policy">Norme sui dati utente dei servizi API di Google</a>, inclusi i requisiti di uso limitato (Limited Use).</p>
+
+      <h2>4. Altre funzioni facoltative che inviano dati</h2>
       <ul>
         <li><strong>Discord (webhook)</strong>: se colleghi un canale Discord, NoteFede invia in quel canale i promemoria e le note che scegli di inviare. Quei messaggi sono trattati da Discord secondo la sua <a href="https://discord.com/privacy">informativa sulla privacy</a>.</li>
         <li><strong>Assistente AI</strong> (disattivato di default): se lo attivi con Claude di Anthropic, il testo delle note che scegli di usare viene inviato ad Anthropic con la tua chiave API, secondo la <a href="https://www.anthropic.com/legal/privacy">loro informativa</a>. Con Ollama tutto resta sul tuo computer.</li>
         <li><strong>Sincronizzazione</strong> (disattivata di default): se la attivi, le modifiche vengono scritte <strong>cifrate</strong> in una cartella scelta da te (es. OneDrive). Senza la tua passphrase non si possono leggere.</li>
       </ul>
 
-      <h2>4. Nessun tracciamento</h2>
+      <h2>5. Nessun tracciamento</h2>
       <p>NoteFede non contiene pubblicità, statistiche d'uso, analytics o strumenti di tracciamento.</p>
 
-      <h2>5. Cancellare i dati</h2>
+      <h2>6. Cancellare i dati</h2>
       <ul>
         <li>Per cancellare tutto: disinstalla NoteFede ed elimina la cartella <code>%APPDATA%\NoteFede</code>.</li>
         <li>Per togliere a NoteFede l'accesso al tuo account: <a href="https://myaccount.google.com/connections">Google → App e servizi collegati</a> oppure Discord → Impostazioni utente → App autorizzate.</li>
       </ul>
 
-      <h2>6. Minori</h2>
+      <h2>7. Minori</h2>
       <p>NoteFede non è rivolto a minori di 14 anni e richiede un account Google o Discord, che hanno i propri limiti di età.</p>
 
-      <h2>7. Modifiche e contatti</h2>
+      <h2>8. Modifiche e contatti</h2>
       <p>Se questa informativa cambia, la nuova versione sarà pubblicata su questa pagina con la data aggiornata. Per domande o richieste scrivi nella pagina <a href="https://github.com/geniofabry-cell/NoteFede-download/issues">Contatti e segnalazioni</a>.</p>
     </article>
   </main>
