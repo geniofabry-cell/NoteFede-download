@@ -15,7 +15,7 @@
   <main class="wrap">
     <article class="doc">
       <h1>Informativa sulla privacy</h1>
-      <p class="muted">Ultimo aggiornamento: 8 ottobre 2026</p>
+      <p class="muted">Ultimo aggiornamento: 19 ottobre 2026 · <a href="#english">English version below</a></p>
 
       <p>NoteFede è un'applicazione per Windows che si installa sul tuo computer. Questa pagina spiega quali dati usa e dove finiscono. In breve: <strong>le tue note restano sul tuo computer</strong> e NoteFede non ha server che le raccolgano.</p>
 
@@ -41,27 +41,109 @@
       <p>Questi dati passano direttamente dal tuo computer ai server di Google: non transitano da server di NoteFede, che non esistono. L'autorizzazione è salvata solo sul tuo computer, cifrata con il tuo account di Windows. Puoi scollegare Google in qualsiasi momento dalle Impostazioni: NoteFede revoca l'autorizzazione; ciò che hai già salvato su Google (backup, eventi, documenti) resta nel tuo account finché non lo elimini tu.</p>
       <p>L'uso e il trasferimento ad altre app delle informazioni ricevute dalle API di Google rispettano le <a href="https://developers.google.com/terms/api-services-user-data-policy">Norme sui dati utente dei servizi API di Google</a>, inclusi i requisiti di uso limitato (Limited Use).</p>
 
-      <h2>4. Altre funzioni facoltative che inviano dati</h2>
+      <h2>4. Come proteggiamo i dati</h2>
+      <p>NoteFede tratta come <strong>dati sensibili</strong> le tue note e i tuoi file, i dati del tuo account Google o Discord, gli eventi del tuo calendario, le autorizzazioni (token) concesse da Google e le chiavi che inserisci nell'app. Per proteggerli usa queste misure:</p>
+      <ul>
+        <li><strong>Nessun server centrale</strong>: NoteFede non ha server propri. I dati non passano dallo sviluppatore e non esiste un archivio centrale dei dati degli utenti che possa essere violato o condiviso.</li>
+        <li><strong>Cifratura in transito</strong>: tutte le comunicazioni con Google (accesso, Calendar, Drive), Discord e Anthropic avvengono solo in HTTPS (TLS). L'accesso con Google usa il flusso OAuth per app desktop con PKCE e un controllo anti-falsificazione (<code>state</code>); la risposta di Google arriva solo a un indirizzo locale del tuo computer (<code>127.0.0.1</code>), non raggiungibile da altri.</li>
+        <li><strong>Cifratura delle credenziali sul computer</strong>: l'autorizzazione di Google per Calendar e Drive (refresh token), il link del webhook di Discord, la chiave API di Claude e la chiave della sincronizzazione sono salvati <strong>cifrati</strong> con le protezioni di Windows legate al tuo account utente (DPAPI, tramite Electron <code>safeStorage</code>): un altro utente o un altro computer non può usarli. Il token d'accesso temporaneo di Google resta solo in memoria. I token ricevuti all'accesso con Google o Discord non vengono conservati: servono una volta per leggere il profilo e poi vengono scartati.</li>
+        <li><strong>Dati minimi e conservazione minima</strong>: NoteFede chiede a Google solo i permessi necessari (lettura dei calendari, il solo calendario creato da NoteFede, i soli file creati da NoteFede su Drive). Gli eventi del calendario vengono letti quando servono e tenuti solo in memoria, per pochi minuti; restano sul computer solo dentro una nota della riunione che crei tu.</li>
+        <li><strong>Dati sul computer</strong>: note, allegati e impostazioni stanno nella cartella del tuo profilo utente di Windows (<code>%APPDATA%\NoteFede</code>), accessibile solo al tuo account Windows; ogni account di NoteFede ha una cartella separata. Per una protezione ulteriore del disco ti consigliamo la cifratura di Windows (BitLocker o "Crittografia del dispositivo").</li>
+        <li><strong>Cifratura dei contenuti riservati</strong>: le <strong>note protette</strong> sono cifrate sul tuo computer con AES-256-GCM e una chiave derivata dalla tua password (PBKDF2-SHA256, 600.000 iterazioni): la password non viene mai salvata e il contenuto resta cifrato anche nei backup. La <strong>sincronizzazione</strong> tra computer cifra ogni file con AES-256-GCM e una chiave derivata dalla tua passphrase (scrypt).</li>
+        <li><strong>Isolamento dell'app</strong>: l'interfaccia di NoteFede gira in un ambiente isolato (sandbox) senza accesso diretto ai file; ogni operazione passa per richieste controllate e validate. I file eseguibili allegati non vengono aperti direttamente.</li>
+        <li><strong>Registri senza contenuti</strong>: i registri tecnici dell'app, salvati solo sul tuo computer, non contengono il testo delle note né gli eventi del calendario.</li>
+        <li><strong>Backup su Google Drive</strong>: vengono caricati in HTTPS nel tuo account Google, dove Google li conserva cifrati; NoteFede vede solo i file che ha creato. Le note protette restano cifrate anche lì.</li>
+        <li><strong>Controllo e revoca</strong>: scollegando Google dalle Impostazioni, NoteFede revoca l'autorizzazione presso Google e cancella il token dal computer. Puoi revocarla anche da <a href="https://myaccount.google.com/connections">Google → App e servizi collegati</a>.</li>
+        <li><strong>Segnalazioni di sicurezza</strong>: se trovi un problema di sicurezza scrivi in <a href="https://github.com/geniofabry-cell/NoteFede-download/issues">Contatti e segnalazioni</a> o a <a href="mailto:fabryfederico314@gmail.com">fabryfederico314@gmail.com</a>: verrà corretto con un aggiornamento, che arriva automaticamente a tutti.</li>
+      </ul>
+
+      <h2>5. Altre funzioni facoltative che inviano dati</h2>
       <ul>
         <li><strong>Discord (webhook)</strong>: se colleghi un canale Discord, NoteFede invia in quel canale i promemoria e le note che scegli di inviare. Quei messaggi sono trattati da Discord secondo la sua <a href="https://discord.com/privacy">informativa sulla privacy</a>.</li>
-        <li><strong>Assistente AI</strong> (disattivato di default): se lo attivi con Claude di Anthropic, il testo delle note che scegli di usare viene inviato ad Anthropic con la tua chiave API, secondo la <a href="https://www.anthropic.com/legal/privacy">loro informativa</a>. Con Ollama tutto resta sul tuo computer.</li>
+        <li><strong>Assistente AI</strong> (disattivato di default): se lo attivi con Claude di Anthropic, il testo delle note che scegli di usare viene inviato ad Anthropic con la tua chiave API, secondo la <a href="https://www.anthropic.com/legal/privacy">loro informativa</a>. Con Ollama tutto resta sul tuo computer. NoteFede non invia mai di sua iniziativa dati di Google ai servizi di AI: viene inviata solo una nota che scegli tu di elaborare con l'assistente (che può essere una nota di riunione creata da te).</li>
         <li><strong>Sincronizzazione</strong> (disattivata di default): se la attivi, le modifiche vengono scritte <strong>cifrate</strong> in una cartella scelta da te (es. OneDrive). Senza la tua passphrase non si possono leggere.</li>
       </ul>
 
-      <h2>5. Nessun tracciamento</h2>
+      <h2>6. Nessun tracciamento</h2>
       <p>NoteFede non contiene pubblicità, statistiche d'uso, analytics o strumenti di tracciamento.</p>
 
-      <h2>6. Cancellare i dati</h2>
+      <h2>7. Cancellare i dati</h2>
       <ul>
         <li>Per cancellare tutto: disinstalla NoteFede ed elimina la cartella <code>%APPDATA%\NoteFede</code>.</li>
         <li>Per togliere a NoteFede l'accesso al tuo account: <a href="https://myaccount.google.com/connections">Google → App e servizi collegati</a> oppure Discord → Impostazioni utente → App autorizzate.</li>
       </ul>
 
-      <h2>7. Minori</h2>
+      <h2>8. Minori</h2>
       <p>NoteFede non è rivolto a minori di 14 anni e richiede un account Google o Discord, che hanno i propri limiti di età.</p>
 
-      <h2>8. Modifiche e contatti</h2>
+      <h2>9. Modifiche e contatti</h2>
       <p>Se questa informativa cambia, la nuova versione sarà pubblicata su questa pagina con la data aggiornata. Per domande o richieste scrivi nella pagina <a href="https://github.com/geniofabry-cell/NoteFede-download/issues">Contatti e segnalazioni</a>.</p>
+    </article>
+
+    <article class="doc" id="english" lang="en">
+      <h1>Privacy Policy (English)</h1>
+      <p class="muted">Last updated: October 19, 2026</p>
+
+      <p>NoteFede is a Windows application installed on your computer. This page explains which data it uses and where that data goes. In short: <strong>your notes stay on your computer</strong>, and NoteFede has no servers that collect them.</p>
+
+      <h2>1. Your notes and files</h2>
+      <p>Notes, tasks, reminders, attachments and settings are stored only on your computer, in the <code>%APPDATA%\NoteFede</code> folder. They are never sent to the developer. They reach third-party services only if you use one of the optional features described below (for example, backup to Google Drive).</p>
+
+      <h2>2. Sign-in with Google or Discord</h2>
+      <p>You sign in to NoteFede with a Google or Discord account, in your browser, on the official Google or Discord pages: NoteFede never sees your password.</p>
+      <ul>
+        <li><strong>Google</strong>: NoteFede requests only the basic scopes <code>openid</code>, <code>email</code> and <code>profile</code> (account identifier, email address, name and profile picture).</li>
+        <li><strong>Discord</strong>: NoteFede requests only the <code>identify</code> scope (identifier, username and avatar). It does not read emails, messages or servers.</li>
+      </ul>
+      <p>This data is used only to recognize you, to keep the notes of different accounts on the same computer separate, and to show your name and picture in the app. It is stored only on your computer (<code>accounts.json</code>). NoteFede does not keep the Google or Discord sign-in tokens: they are used once to read your profile and then discarded.</p>
+
+      <h2>3. Google Calendar and Google Drive (optional)</h2>
+      <p>If you choose "Connect Google" in Settings, NoteFede requests these additional scopes, only for these features:</p>
+      <ul>
+        <li><strong>See your calendars</strong> (<code>calendar.readonly</code>): to show your events on the dashboard and in the task calendar, and to create, when you ask, a meeting note with the event's title, time, location, attendees and description. Events are read from Google when needed and kept only in memory; they are stored only inside a meeting note that you create.</li>
+        <li><strong>Manage the calendar created by NoteFede</strong> (<code>calendar.app.created</code>): if you enable the option, NoteFede creates a calendar named "NoteFede" and copies your tasks with a due date into it (title, description, priority, date, time, reminder). It never modifies or deletes events in your other calendars.</li>
+        <li><strong>See and manage only the Drive files created by NoteFede</strong> (<code>drive.file</code>): to save backups of your notes (database and attachments) in a "NoteFede" folder in your Drive, to restore them, and to create a Google Docs document from a note when you ask. NoteFede cannot see your other Drive files.</li>
+      </ul>
+      <p>This data travels directly between your computer and Google's servers; it never goes through NoteFede servers, which do not exist. You can disconnect Google at any time in Settings: NoteFede revokes the authorization; what you already saved in Google (backups, events, documents) stays in your account until you delete it.</p>
+      <p>NoteFede's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Google user data is not sold, not transferred to third parties, not used for advertising and not used to train artificial intelligence or machine learning models.</p>
+
+      <h2>4. How we protect your data</h2>
+      <p>NoteFede treats as <strong>sensitive data</strong> your notes and files, your Google or Discord account data, your calendar events, the authorizations (tokens) granted by Google and the keys you enter in the app. It protects them with these measures:</p>
+      <ul>
+        <li><strong>No central server</strong>: NoteFede has no servers of its own. Data never passes through the developer, and there is no central store of user data that could be breached or shared.</li>
+        <li><strong>Encryption in transit</strong>: all communication with Google (sign-in, Calendar, Drive), Discord and Anthropic uses HTTPS (TLS) only. Google sign-in uses the OAuth flow for installed apps with PKCE and an anti-forgery <code>state</code> check; Google's response is delivered only to a local loopback address on your computer (<code>127.0.0.1</code>), not reachable from other devices.</li>
+        <li><strong>Encryption of credentials at rest</strong>: the Google authorization for Calendar and Drive (refresh token), the Discord webhook link, the Claude API key and the sync key are stored <strong>encrypted</strong> with Windows protection tied to your user account (DPAPI, through Electron <code>safeStorage</code>), so they cannot be used by another user or on another computer. The short-lived Google access token is kept in memory only. Tokens received at sign-in are not stored.</li>
+        <li><strong>Data minimization and minimal retention</strong>: NoteFede requests only the scopes it needs (read-only calendars, only the calendar it creates, only the Drive files it creates). Calendar events are fetched on demand and cached in memory only for a few minutes; they are persisted only inside a meeting note that you explicitly create.</li>
+        <li><strong>Data on your computer</strong>: notes, attachments and settings are stored in your Windows user profile folder (<code>%APPDATA%\NoteFede</code>), accessible only to your Windows account, with a separate folder for each NoteFede account. For additional disk protection we recommend Windows encryption (BitLocker or Device Encryption).</li>
+        <li><strong>Encryption of confidential content</strong>: <strong>protected notes</strong> are encrypted on your computer with AES-256-GCM and a key derived from your password (PBKDF2-SHA256, 600,000 iterations); the password is never stored and the content stays encrypted in backups too. <strong>Sync</strong> between computers encrypts every file with AES-256-GCM and a key derived from your passphrase (scrypt).</li>
+        <li><strong>Application isolation</strong>: NoteFede's interface runs in a sandbox with no direct file access; every operation goes through controlled, validated requests. Executable attachments are never opened directly.</li>
+        <li><strong>Logs without content</strong>: the app's technical logs, stored only on your computer, do not contain note text or calendar events.</li>
+        <li><strong>Google Drive backups</strong>: uploaded over HTTPS to your own Google account, where Google stores them encrypted; NoteFede can only access the files it created. Protected notes remain encrypted there too.</li>
+        <li><strong>Control and revocation</strong>: when you disconnect Google in Settings, NoteFede revokes the authorization with Google and deletes the token from your computer. You can also revoke it at <a href="https://myaccount.google.com/connections">Google Account → Third-party apps &amp; services</a>.</li>
+        <li><strong>Security reports</strong>: if you find a security issue, report it at <a href="https://github.com/geniofabry-cell/NoteFede-download/issues">Contacts and reports</a> or to <a href="mailto:fabryfederico314@gmail.com">fabryfederico314@gmail.com</a>; fixes are delivered through automatic updates to all users.</li>
+      </ul>
+
+      <h2>5. Other optional features that send data</h2>
+      <ul>
+        <li><strong>Discord (webhook)</strong>: if you connect a Discord channel, NoteFede posts to it the reminders and the notes you choose to send, under Discord's <a href="https://discord.com/privacy">privacy policy</a>.</li>
+        <li><strong>AI assistant</strong> (off by default): if you enable it with Anthropic's Claude, the text of the notes you choose is sent to Anthropic with your own API key, under <a href="https://www.anthropic.com/legal/privacy">their privacy policy</a>. With Ollama everything stays on your computer. NoteFede never sends Google user data to AI services on its own: only a note you explicitly choose to process with the assistant (which may be a meeting note you created) is sent.</li>
+        <li><strong>Sync</strong> (off by default): changes are written <strong>encrypted</strong> to a folder you choose (for example OneDrive) and cannot be read without your passphrase.</li>
+      </ul>
+
+      <h2>6. No tracking</h2>
+      <p>NoteFede contains no advertising, usage analytics or tracking tools.</p>
+
+      <h2>7. Deleting your data</h2>
+      <ul>
+        <li>To delete everything: uninstall NoteFede and delete the <code>%APPDATA%\NoteFede</code> folder.</li>
+        <li>To remove NoteFede's access to your account: <a href="https://myaccount.google.com/connections">Google → Third-party apps &amp; services</a>, or Discord → User Settings → Authorized Apps.</li>
+      </ul>
+
+      <h2>8. Children</h2>
+      <p>NoteFede is not intended for children under 14 and requires a Google or Discord account, which have their own age limits.</p>
+
+      <h2>9. Changes and contact</h2>
+      <p>If this policy changes, the new version will be published on this page with an updated date. For questions or requests, use <a href="https://github.com/geniofabry-cell/NoteFede-download/issues">Contacts and reports</a> or write to <a href="mailto:fabryfederico314@gmail.com">fabryfederico314@gmail.com</a>.</p>
     </article>
   </main>
 
