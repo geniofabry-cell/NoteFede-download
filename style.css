@@ -58,3 +58,16 @@ header.top a.brand { font-weight: 700; font-size: 18px; color: var(--text); text
 .muted { color: var(--muted); }
 footer { border-top: 1px solid var(--border); padding: 20px 0 32px; font-size: 14px; color: var(--muted); }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+/* Altre app (BalanceFede) */
+.btn.green { background: linear-gradient(135deg, #12b886, #0b7285); box-shadow: 0 8px 24px rgba(18, 184, 134, 0.3); }
+.apps { padding: 8px 0 40px; }
+.apps h2 { font-size: 24px; margin: 0 0 4px; }
+.apps > p { color: var(--muted); margin: 0 0 16px; }
+.app-card { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px 24px; }
+.app-card img { width: 72px; height: 72px; flex-shrink: 0; }
+.app-card .text { flex: 1; min-width: 220px; }
+.app-card h3 { margin: 0 0 4px; font-size: 20px; }
+.app-card p { margin: 0; color: var(--muted); font-size: 15px; }
+.app-card .actions { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.app-card .actions .btn { font-size: 16px; padding: 12px 22px; }
+.app-card .actions a.more { font-size: 14px; }
