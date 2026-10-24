@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pagina non trovata · NoteFede</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/icon.png">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    // Indirizzi quasi giusti: "/balancefede/" → "/balancefede", "/Privacy" → "/privacy".
+    (function () {
+      var p = location.pathname, known = ['/balancefede', '/privacy', '/termini'];
+      var clean = p.replace(/\/+$/, '').replace(/\.html$/i, '').toLowerCase();
+      if (clean === '' || clean === '/index') return location.replace('/' + location.hash);
+      if (known.indexOf(clean) >= 0 && clean !== p) location.replace(clean + location.search + location.hash);
+    })();
+  </script>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap"><a class="brand" href="/"><img src="/icon.png" alt="">NoteFede</a></div>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <h1>Pagina non trovata</h1>
+      <p class="lead">L'indirizzo che hai aperto non esiste. Forse cercavi una di queste:</p>
+      <a class="btn" href="/">NoteFede</a>
+      <div class="sub"><a href="/balancefede">BalanceFede</a> · <a href="/privacy">Privacy</a> · <a href="/termini">Termini di servizio</a></div>
+    </section>
+  </main>
+</body>
+</html>
