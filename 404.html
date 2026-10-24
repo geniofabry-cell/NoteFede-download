@@ -10,7 +10,7 @@
   <script>
     // Indirizzi quasi giusti: "/balancefede/" → "/balancefede", "/Privacy" → "/privacy".
     (function () {
-      var p = location.pathname, known = ['/balancefede', '/privacy', '/termini'];
+      var p = location.pathname, known = ['/balancefede', '/privacy', '/termini', '/invito'];
       var clean = p.replace(/\/+$/, '').replace(/\.html$/i, '').toLowerCase();
       if (clean === '' || clean === '/index') return location.replace('/' + location.hash);
       if (known.indexOf(clean) >= 0 && clean !== p) location.replace(clean + location.search + location.hash);

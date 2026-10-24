@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invito a una bacheca condivisa</title>
+  <meta name="description" content="Entra in una bacheca condivisa di NoteFede o BalanceFede con il codice di invito.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/icon.png">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="canonical" href="https://notefede.date/invito">
+  <style>
+    .code { font: 800 34px/1.2 ui-monospace, "Cascadia Mono", Consolas, monospace; letter-spacing: 3px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 22px; display: inline-block; margin: 8px 0 20px; }
+    .steps { text-align: left; max-width: 560px; margin: 28px auto 0; }
+    .steps li { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap"><a class="brand" href="/"><img src="/icon.png" alt="">NoteFede</a></div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <img id="app-icon" src="/icon.png" alt="">
+      <h1 id="title">Sei stato invitato in una bacheca</h1>
+      <p class="lead" id="lead">Apri l'app ed entra con questo codice.</p>
+      <div class="code" id="code" aria-label="Codice di invito">—</div>
+      <div>
+        <a class="btn" id="open" href="#">Apri nell'app</a>
+      </div>
+      <div class="sub" id="sub">Se non si apre nulla, l'app non è ancora installata: scaricala qui sotto.</div>
+
+      <ol class="steps note">
+        <li id="step-download">Scarica e installa l'app: <a id="download" href="#">pagina di download</a>.</li>
+        <li>Entra con il tuo account Google o Discord.</li>
+        <li>Apri <strong>Bacheche condivise</strong> → <strong>Entra con un codice</strong> e incolla il codice qui sopra. (Con il pulsante "Apri nell'app" il codice viene già inserito.)</li>
+      </ol>
+      <p class="sub" id="missing">Questo link non contiene un codice valido: chiedi un nuovo invito a chi te l'ha mandato.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 NoteFede</span>
+      <a href="/">NoteFede</a>
+      <a href="/balancefede">BalanceFede</a>
+      <a href="/privacy#bacheche">Privacy delle bacheche</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var apps = {
+        balancefede: { name: 'BalanceFede', icon: '/balancefede.png', download: 'https://github.com/geniofabry-cell/BalanceFede-download/releases/latest', btn: 'btn green' },
+        notefede: { name: 'NoteFede', icon: '/icon.png', download: 'https://github.com/geniofabry-cell/NoteFede-download/releases/latest', btn: 'btn' }
+      };
+      var key = new URLSearchParams(location.search).get('app');
+      var app = apps[key] || apps.notefede;
+      var code = (location.hash || '').replace(/^#/, '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+      var valid = /^[A-HJ-NP-Z2-9]{10}$/.test(code);
+      document.title = 'Invito a una bacheca di ' + app.name;
+      document.getElementById('app-icon').src = app.icon;
+      document.getElementById('app-icon').alt = 'Logo di ' + app.name;
+      document.getElementById('title').textContent = 'Sei stato invitato in una bacheca di ' + app.name;
+      document.getElementById('lead').textContent = 'Apri ' + app.name + ' ed entra con questo codice.';
+      document.getElementById('download').href = app.download;
+      document.getElementById('download').textContent = 'scarica ' + app.name + ' per Windows';
+      var open = document.getElementById('open');
+      open.className = app.btn;
+      open.textContent = 'Apri in ' + app.name;
+      if (valid) {
+        var pretty = code.slice(0, 4) + '-' + code.slice(4, 8) + '-' + code.slice(8);
+        document.getElementById('code').textContent = pretty;
+        open.href = (key === 'balancefede' ? 'balancefede' : 'notefede') + '://invito/' + code;
+        document.getElementById('missing').style.display = 'none';
+      } else {
+        document.getElementById('code').textContent = '—';
+        open.style.display = 'none';
+        document.getElementById('sub').style.display = 'none';
+      }
+    })();
+  </script>
+</body>
+</html>
